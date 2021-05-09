@@ -15,7 +15,7 @@ export class PokemonResolver {
   async findPokemons(
     @Args('filter', {nullable: true, defaultValue: true}) filter: boolean
   ): Promise<Pokemon[]> {
-    const Pokemons = this.pokemonService.findPokemons()
+    const Pokemons = this.pokemonService.findPokemons(filter)
 
     return Pokemons
   }
