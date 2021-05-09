@@ -13,4 +13,7 @@ export class UpdatePokemon {
 
   @Field({nullable: true})
   type_id: number;
+
+  @Field({nullable: true})
+  active: boolean;
 }

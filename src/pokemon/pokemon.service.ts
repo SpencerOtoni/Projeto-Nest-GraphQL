@@ -39,10 +39,9 @@ async updatePolemon(data: UpdatePokemon): Promise<Pokemon> {
  
 }
 
-async findPokemons(actives): Promise<Pokemon[]> {
-  const active = actives ? false : true
+async findPokemons(filter: boolean): Promise<Pokemon[]> {
   const pokemons = this.PokemonRepository.find({
-    where: {active},
+   where: {filter},
     relations: ['type']
   })
 

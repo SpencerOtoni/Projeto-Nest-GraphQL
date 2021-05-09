@@ -18,7 +18,7 @@ export class TypeResolver {
 
   @Query(()=> Type)
   async findType(
-    @Args('id') 
+    @Args('id', {type: () => Int}) 
     id: number
   ): Promise<Type> {
     const type = this.typeService.findType(id)
@@ -47,7 +47,7 @@ export class TypeResolver {
 
   @Mutation(() => Boolean)
   async deleteType(
-    @Args('id') 
+    @Args('id', {type: () => Int}) 
     id: number
   ): Promise<boolean> {
     const deleted = this.typeService.deleteType(id)

@@ -3,6 +3,7 @@ import Pokemon from './pokemon.entity'
 import { PokemonService } from './pokemon.service'
 import { UpdatePokemon } from './DTO/update-pokemon'
 import { CreatePokemon } from './DTO/create-pokemon'
+import { ActivePokemon } from './DTO/active-pokemon'
 
 @Resolver()
 export class PokemonResolver {
@@ -12,18 +13,17 @@ export class PokemonResolver {
 
   @Query(()=> [Pokemon])
   async findPokemons(
-    @Args('actives') actives: boolean
+    @Args('filter', {nullable: true, defaultValue: true}) filter: boolean
   ): Promise<Pokemon[]> {
-    const Pokemons = this.pokemonService.findPokemons(actives)
+    const Pokemons = this.pokemonService.findPokemons()
 
     return Pokemons
   }
 
   @Query(()=> Pokemon)
   async findPokemon(
-    @Args('id') id: number
+    @Args('id', {type: () => Int}) id: number
   ): Promise<Pokemon> {
-    console.log(id)
     const type = this.pokemonService.findPokemon(id)
 
     return type
@@ -50,7 +50,7 @@ export class PokemonResolver {
 
   @Mutation(() => Pokemon)
   async deletePokemon(
-    @Args('id') 
+    @Args('id', {type: () => Int}) 
     id: number
   ): Promise<Pokemon> {
     const deleted = this.pokemonService.deletePokemon(id)

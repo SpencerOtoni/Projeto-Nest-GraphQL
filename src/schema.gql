@@ -37,7 +37,7 @@ type Query {
   findUser(id: String!): User!
   findTypes: [Type!]!
   findType(id: Float!): Type!
-  findPokemons(actives: Boolean!): [Pokemon!]!
+  findPokemons: [Pokemon!]!
   findPokemon(id: Float!): Pokemon!
 }
 
@@ -83,4 +83,5 @@ input UpdatePokemon {
   name: String
   generation: Float
   type_id: Float
+  active: Boolean
 }
